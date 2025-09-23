@@ -14,16 +14,3 @@
     }
   ]
 }
-{
-  "headers": [
-    {
-      "source": "/events",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://backend-integration-bi-qdm6-d5smbjry4.vercel.app"
-        }
-      ]
-    }
-  ]
-}
