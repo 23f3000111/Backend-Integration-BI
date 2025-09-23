@@ -10,7 +10,7 @@ function Event() {
       'Authorization': `Bearer YOUR_TOKEN_HERE`  // Only include this if the backend needs it
     }
   };
-  const { data, loading, error } = useFetch("https://backend-integration-bi-8xca-gf5bw2m9h.vercel.app/events", fetchOptions);
+  const { data, loading, error } = useFetch("https://backend-integration-bi-8xca-94uoblq2w.vercel.app/events");
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
