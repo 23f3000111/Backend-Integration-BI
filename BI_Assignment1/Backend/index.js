@@ -6,26 +6,10 @@ const Event = require("./models/event.models");
 const Speaker = require("./models/speaker.models");
 
 app.use(express.json());
-const allowedOrigins = [
-  "https://backend-integration-bi-qdm6-ic157d6wx.vercel.app/"
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("CORS policy: This origin is not allowed"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: 'https://backend-integration-bi-qdm6.vercel.app', // your frontend domain
+  credentials: true, // if you're sending cookies or authorization headers
+}));
 intializeDatabase()
 
 app.get("/events", async (req, res) => {
