@@ -7,14 +7,9 @@ function Event() {
   const [type, setType] = useState("");
 
   // Call useFetch with dynamic URL (no token used)
-  const { data, loading, error } = useFetch('https://backend-integration-bi-8xca-94uoblq2w.vercel.app/events', {
-  method: 'GET',
-  headers: {
-    'Authorization': `Bearer YOUR_TOKEN_HERE`, // If using token auth
-    'Content-Type': 'application/json'
-  },
-  credentials: 'include' // If using cookies/session
-});
+  const { data, loading, error } = useFetch(
+    'https://backend-integration-bi-8xca-94uoblq2w.vercel.app/events'
+  );
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
