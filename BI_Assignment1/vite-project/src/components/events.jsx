@@ -25,28 +25,32 @@ function Event() {
     return date.toLocaleString("en-US", options) + " IST";
   };
 
-  const filterEvent =
-    search == "" && type == ""
+  const filterEvent = search === "" && type === ""
       ? data
-      : search != ""
+      : search !== ""
       ? data.filter(
           (d) =>
-            d.title == search ||
-            (Array.isArray(d?.tag) && d.tag.some((t) => t == search))
+            d.title?.toLowerCase().includes(search.toLowerCase()) ||
+            (Array.isArray(d?.tag) &&
+              d.tag.some((t) => t.toLowerCase().includes(search.toLowerCase())))
         )
-      : search == "" && type != ""
-      ? data.filter((d) => d.type == type)
+      : search === "" && type !== ""
+      ? data.filter((d) => d.type === type)
       : data.filter(
           (d) =>
-            d.title == search ||
-            (Array.isArray(d?.tag) && d.tag.some((t) => t == search))
+            d.title?.toLowerCase().includes(search.toLowerCase()) ||
+            (Array.isArray(d?.tag) &&
+              d.tag.some((t) => t.toLowerCase().includes(search.toLowerCase())))
         );
 
-        const typeFilter = type != "" ? filterEvent.filter(filter => filter.type == type) : filterEvent
+  const typeFilter =
+    type != ""
+      ? filterEvent.filter((filter) => filter.type == type)
+      : filterEvent;
 
   return (
     <div className="bg-light mb-5">
-      <div className="container">
+      <div className=" container">
         <nav className="navbar pb-3">
           <h1 className="navbar-brand text-danger">meetup</h1>
           <form className="form-inline">
@@ -74,20 +78,30 @@ function Event() {
             </form>
           </section>
           <section>
-            <div className="row g-5">
+            {loading && <h2>Loading...</h2>}
+          </section>
+          <section>
+            <div className="row g-5 overflow-hidden">
               {data &&
                 typeFilter.map((event) => (
-                  <div key={event._id} className="col-md-4 ">
+                  <div key={event._id} className="col-md-4 mb-5">
                     <img
                       src={event.thumbnailUrl}
-                      alt="thumbnail"
-                      className="rounded"
+                      alt="thumbnail" style={{ maxHeight: '320px' }}
+                      className="rounded img-fluid w-100 h-75"
                     />
                     <p className="text-secondary m-0">
                       {formatDate(event.startDate)}
                     </p>
-                    <h4 className="d-inline text-nowrap">{event.title}</h4><span className="ms-2">({event.type})</span><br />
-                    <Link to={`/events/${event._id}`} className="m-2 btn btn-primary">View Details</Link>
+                    <h4 className="d-inline ">{event.title}</h4>
+                    <span className="ms-2">({event.type})</span>
+                    <br />
+                    <Link
+                      to={`/events/${event._id}`}
+                      className="m-2 btn btn-primary mt-3"
+                    >
+                      View Details
+                    </Link>
                   </div>
                 ))}
             </div>

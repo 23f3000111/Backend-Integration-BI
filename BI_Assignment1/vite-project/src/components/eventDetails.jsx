@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function EventDetails() {
   const eventId = useParams();
-  const { data } = useFetch("http://localhost:3000/events");
+  const { data, loading } = useFetch("http://localhost:3000/events");
   const details = data?.find((d) => d._id == eventId.id);
 
   const { data: speaker } = useFetch("http://localhost:3000/speakers");
@@ -37,12 +37,15 @@ export default function EventDetails() {
         </nav>
         <hr />
         <main>
+          <section>
+            {loading && <h2>Loading...</h2>}
+          </section>
           <section className="row">
             <div className="col-md-8">
               <h1>{details?.title}</h1>
               <p className="m-0">Hosted By:</p>
               <h5>{details?.host}</h5>
-              <img src={details?.thumbnailUrl} className="my-3" />
+              <img src={details?.thumbnailUrl} className="my-3 rounded img-fluid w-100 h-50" />
               <h3>Details:</h3>
               <p>{details?.description}</p>
               <h3>Additional Information:</h3>
