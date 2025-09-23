@@ -8,6 +8,8 @@ const Speaker = require("./models/speaker.models");
 app.use(express.json());
 app.use(cors());
 
+intializeDatabase()
+
 app.get("/events", async (req, res) => {
   try {
     const event = await Event.find();
