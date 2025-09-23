@@ -10,6 +10,12 @@ app.use(cors({
   origin: 'https://backend-integration-bi-qdm6.vercel.app', // your frontend domain
   credentials: true, // if you're sending cookies or authorization headers
 }));
+
+app.options("*", cors({
+  origin: 'https://backend-integration-bi-qdm6.vercel.app',
+  credentials: true
+}));
+
 intializeDatabase()
 
 app.get("/events", async (req, res) => {
