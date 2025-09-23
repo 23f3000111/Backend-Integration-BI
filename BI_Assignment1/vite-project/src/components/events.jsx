@@ -10,7 +10,7 @@ function Event() {
       'Authorization': `Bearer YOUR_TOKEN_HERE`  // Only include this if the backend needs it
     }
   };
-  const { data, loading } = useFetch("https://backend-integration-bi-8xca-cnatlctcs.vercel.app/events", fetchOptions);
+  const { data, loading, error } = useFetch("https://backend-integration-bi-8xca-cnatlctcs.vercel.app/events", fetchOptions);
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
@@ -84,6 +84,7 @@ function Event() {
           </section>
           <section>
             {loading && <h2>Loading...</h2>}
+            {error && <h2>Error</h2>}
           </section>
           <section>
             <div className="row g-5 overflow-hidden">
