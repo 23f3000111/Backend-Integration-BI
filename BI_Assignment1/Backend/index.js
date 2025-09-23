@@ -5,8 +5,35 @@ const { intializeDatabase } = require("./db/db.connect");
 const Event = require("./models/event.models");
 const Speaker = require("./models/speaker.models");
 
-app.use(cors());
+
+// Make CORS the first thing
+const allowedOrigins = [
+  "https://backend-integration-bi-qdm6-d0cui1vv9.vercel.app",
+  "https://backend-integration-bi-qdm6-dbkp74yoq.vercel.app",
+  // add all your frontend origins
+];
+
+const corsOptions = {
+  origin: function(origin, callback) {
+    // allow no-origin requests (e.g. from Postman) too
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS: " + origin), false);
+    }
+  },
+  methods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
+// Explicitly handle preflight
+app.options("*", cors(corsOptions));  // for all routes
 
 intializeDatabase()
 
