@@ -5,9 +5,15 @@ const { intializeDatabase } = require("./db/db.connect");
 const Event = require("./models/event.models");
 const Speaker = require("./models/speaker.models");
 
-app.use(express.json());
-app.use(cors());
 
+app.use(express.json());
+const allowedOrigin = "https://backend-integration-bi-qdm6-dbkp74yoq.vercel.app";
+
+app.use(cors({
+  origin: allowedOrigin,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 intializeDatabase()
 
 app.get("/events", async (req, res) => {
