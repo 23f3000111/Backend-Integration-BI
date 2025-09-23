@@ -46,8 +46,4 @@ app.get("/speakers", async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`server start on port ${PORT}`);
-})
-
     module.exports = app;
