@@ -7,8 +7,7 @@ const Speaker = require("./models/speaker.models");
 
 app.use(express.json());
 const allowedOrigins = [
-  "https://backend-integration-bi-qdm6-94lac6069.vercel.app",
-  "http://localhost:5173" // for local dev
+  "https://backend-integration-bi-qdm6-ic157d6wx.vercel.app/"
 ];
 
 app.use(
