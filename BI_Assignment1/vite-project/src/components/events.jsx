@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Event() {
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
-  VITE_API_URL="https://backend-integration-bi-8xca-h8ixnd73k.vercel.app/"
+  const VITE_API_URL="https://backend-integration-bi-8xca-h8ixnd73k.vercel.app/"
  const apiUrl = import.meta.env.VITE_API_URL;
 
   // Call useFetch with dynamic URL (no token used)
