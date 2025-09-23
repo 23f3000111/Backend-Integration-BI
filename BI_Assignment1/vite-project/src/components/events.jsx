@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 function Event() {
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
-  const { data, loading } = useFetch("https://backend-integration-bi-8xca-cnatlctcs.vercel.app/events");
+  const fetchOptions = {
+    headers: {
+      'Authorization': `Bearer YOUR_TOKEN_HERE`  // Only include this if the backend needs it
+    }
+  };
+  const { data, loading } = useFetch("https://backend-integration-bi-8xca-cnatlctcs.vercel.app/events", fetchOptions);
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
