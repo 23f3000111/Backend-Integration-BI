@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Event() {
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
-  const { data, loading } = useFetch("http://localhost:3000/events");
+  const { data, loading } = useFetch("https://backend-integration-bi-8xca-cnatlctcs.vercel.app/events");
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
