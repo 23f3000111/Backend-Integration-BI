@@ -8,8 +8,8 @@ const Speaker = require("./models/speaker.models");
 
 // Make CORS the first thing
 const allowedOrigins = [
-  "https://backend-integration-bi-qdm6-d0cui1vv9.vercel.app",
-  "https://backend-integration-bi-qdm6-dbkp74yoq.vercel.app",
+  "https://backend-integration-bi-qdm6-5x0r61ybn.vercel.app",
+  "https://backend-integration-bi-8xca-94uoblq2w.vercel.app",
   // add all your frontend origins
 ];
 
