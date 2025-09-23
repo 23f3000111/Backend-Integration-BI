@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 function Event() {
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
-  const VITE_API_URL="https://backend-integration-bi-8xca-h8ixnd73k.vercel.app/"
- const apiUrl = import.meta.env.VITE_API_URL;
 
   // Call useFetch with dynamic URL (no token used)
-  const { data, loading, error } = useFetch(`${apiUrl}/events`);
+  const { data, loading, error } = useFetch('https://backend-integration-bi-8xca-94uoblq2w.vercel.app/events', {
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer YOUR_TOKEN_HERE`, // If using token auth
+    'Content-Type': 'application/json'
+  },
+  credentials: 'include' // If using cookies/session
+});
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
